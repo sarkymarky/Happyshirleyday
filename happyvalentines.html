@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>💘 Valentine Quiz 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Social preview -->
+  <meta property="og:title" content="A Valentine Quiz Just for You 💕">
+  <meta property="og:description" content="Take this quick quiz 💘">
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e63950;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <h1>💘 Valentine Quiz 💘</h1>
+  <p id="question"></p>
+  <div id="answers"></div>
+</div>
+
+<script>
+  const quiz = [
+    {
+      question: "Can you be my valentines forever:",
+      answers: ["tf yes ", "duhhh", "fuck yes"]
+    },
+    {
+      question: "Can i annoy you foreeeva?",
+      answers: ["pleaaase no ", "yyyyyyaaaaas", "pleeeeease ❤️"]
+    },
+    {
+      question: "Final question…",
+      answers: ["Yes 👀", "Yes 😌", "YES 💖"]
+    }
+  ];
+
+  let index = 0;
+
+  function loadQuestion() {
+    document.getElementById("question").innerText = quiz[index].question;
+    const answers = document.getElementById("answers");
+    answers.innerHTML = "";
+
+    quiz[index].answers.forEach(answer => {
+      const btn = document.createElement("button");
+      btn.innerText = answer;
+      btn.onclick = next;
+      answers.appendChild(btn);
+    });
+  }
+
+  function next() {
+    index++;
+    if (index < quiz.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("card").innerHTML = `
+        <h1>💖 Surprise 💖</h1>
+        <p>So… will you be my Valentine? 💌</p>
+        <button onclick="alert('Best answer 😘')">Yes ❤️</button>
+        <button onclick="alert('Wrong answer 😜')">Also Yes 💕</button>
+      `;
+    }
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
